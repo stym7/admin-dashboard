@@ -13,21 +13,29 @@ import SettingsSystemDaydreamOutlinedIcon from "@mui/icons-material/SettingsSyst
 import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { Link } from "react-router-dom";
+import { useContext } from 'react';
+import { DarkModeContext } from '../../context/darkModeContext';
+
 const Sidebar = () => {
+
+    const { dispatch } = useContext(DarkModeContext)
+
     return (
         <div className='sidebar'>
             <div className="top">
-                <div className="logo">admin-dash</div>
+                <Link to="/" style={{ textDecoration: "none" }} >
+                    <div className="logo">admin-dash</div>
+                </Link>
             </div>
             <hr />
             <div className="center">
                 <ul>
                     <p className="title">MAIN</p>
                     <Link to="/" style={{ textDecoration: "none" }}>
-                    <li>
-                        <DashboardIcon className="icon" />
-                        <span>Dashboard</span>
-                    </li>
+                        <li>
+                            <DashboardIcon className="icon" />
+                            <span>Dashboard</span>
+                        </li>
                     </Link>
                     <p className="title">LISTS</p>
                     <Link to="/users" style={{ textDecoration: "none" }}>
@@ -85,8 +93,8 @@ const Sidebar = () => {
             </div>
             <div className="bottom">
 
-                <div className="colorOption"></div>
-                <div className="colorOption"></div>
+                <div className="colorOption" onClick={() => dispatch({type: "LIGHT"})}></div>
+                <div className="colorOption" onClick={() => dispatch({type: "DARK"})}></div>
 
             </div>
         </div>
